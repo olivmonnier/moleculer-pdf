@@ -56,6 +56,40 @@ broker.start().then(() => {
 | `options`       | `Object`  | `{ format: 'letter' }` | Set of configurable options to set pdf document   |
 | `remoteContent` | `Boolean` | `true`                 | Content to load on webpage like                   |
 
+# Actions
+
+## `transform`
+
+Transform html to pdf document
+
+### Parameters
+
+| Property | Type     | Default      | Description      |
+| -------- | -------- | ------------ | ---------------- |
+| `html`   | `String` | **required** | The html content |
+
+### Results
+
+**Type:** `Buffer`
+- Generated pdf document
+
+# Methods
+
+## `transform`
+
+Transform html to pdf document
+
+### Parameters
+
+| Property | Type     | Default      | Description      |
+| -------- | -------- | ------------ | ---------------- |
+| `html`   | `String` | -            | The html content |
+
+### Results
+
+**Type:** `Buffer`
+- Generated pdf document
+
 # Test
 ```
 $ npm test
