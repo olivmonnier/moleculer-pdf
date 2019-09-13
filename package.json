@@ -1,0 +1,54 @@
+{
+  "name": "moleculer-pdf",
+  "version": "0.1.0",
+  "description": "Translates Html to PDF",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon examples/index.js",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "lint": "eslint --ext=.js src test",
+    "deps": "npm-check -u",
+    "coverall": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+  },
+  "keywords": [
+    "moleculer",
+    "microservice"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olivmonnier/moleculer-pdf.git"
+  },
+  "author": "moleculer-pdf",
+  "license": "MIT",
+  "peerDependencies": {
+    "moleculer": "^0.13.0"
+  },
+  "devDependencies": {
+    "benchmarkify": "2.1.0",
+    "coveralls": "3.0.2",
+    "eslint": "5.9.0",
+    "jest": "23.6.0",
+    "jest-cli": "23.6.0",
+    "moleculer": "^0.13.0",
+    "nodemon": "1.18.6",
+    "npm-check": "5.9.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "rootDir": "./src",
+    "roots": [
+      "../test"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/services/"
+    ]
+  },
+  "engines": {
+    "node": ">= 8.x.x"
+  },
+  "dependencies": {
+    "puppeteer": "^1.19.0"
+  }
+}
