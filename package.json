@@ -1,6 +1,6 @@
 {
   "name": "moleculer-pdf",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Translates Html to PDF",
   "main": "index.js",
   "scripts": {
