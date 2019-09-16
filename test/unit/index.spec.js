@@ -2,6 +2,7 @@
 
 const { ServiceBroker } = require("moleculer");
 const PDFService = require("../../src");
+const { ValidationError } = require("moleculer").Errors;
 
 describe("Test PDFService", () => {
   const broker = new ServiceBroker();
@@ -14,9 +15,12 @@ describe("Test PDFService", () => {
     expect(service).toBeDefined();
   });
 
-  it("should return an error", () => {
-    expect.assertions(0);
-    broker.call("pdf.transform").catch(e => expect(e).toThrowError());
+  it("should return an error", async () => {
+    try {
+      await broker.call("pdf.transform")
+    } catch (e) {
+      expect(e).toBeInstanceOf(ValidationError);
+    }
   });
 
   it("should return an buffer", () => {
