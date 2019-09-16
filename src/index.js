@@ -44,36 +44,36 @@ module.exports = {
 		 * @param {String} html - The html content
 		 * @returns {Promise}
 		 */
-		async transform(html) {
-			if (typeof html !== 'string') {
-				throw new Error(
-					'Invalid Argument: HTML expected as type of string and received a value of a different type. Check your request body and request headers.'
-				);
-			}
-
-			let browser;
-			const { puppeteerArgs, options, remoteContent } = this.settings;
-
-			if (puppeteerArgs) {
-				browser = await puppeteer.launch(puppeteerArgs);
-			} else {
-				browser = await puppeteer.launch();
-			}
-		
-			const page = await browser.newPage();
-		
-			if (remoteContent === true) {
-				await page.goto(`data:text/html;base64,${Buffer.from(html).toString('base64')}`, {
-					waitUntil: 'networkidle0'
-				});
-			} else {
-				await page.setContent(html);
-			}
-		
-			const result = await page.pdf(options);
-			await browser.close();
-
-			return result
+		transform(html) {
+			return new Promise(async (resolve, reject) => {
+				if (typeof html !== 'string') {
+					reject('Invalid Argument: HTML expected as type of string and received a value of a different type. Check your request body and request headers.')
+				}
+	
+				let browser;
+				const { puppeteerArgs, options, remoteContent } = this.settings;
+	
+				if (puppeteerArgs) {
+					browser = await puppeteer.launch(puppeteerArgs);
+				} else {
+					browser = await puppeteer.launch();
+				}
+			
+				const page = await browser.newPage();
+			
+				if (remoteContent === true) {
+					await page.goto(`data:text/html;base64,${Buffer.from(html).toString('base64')}`, {
+						waitUntil: 'networkidle0'
+					});
+				} else {
+					await page.setContent(html);
+				}
+			
+				const result = await page.pdf(options);
+				await browser.close();
+	
+				return resolve(result);
+			})
 		}
 	},
 
